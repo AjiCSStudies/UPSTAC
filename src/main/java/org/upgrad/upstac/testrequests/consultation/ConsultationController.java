@@ -62,7 +62,11 @@ public class ConsultationController {
 
         // replace this line of code with your implementation
         // ajcs week3 code
-        return testRequestQueryService.findBy(RequestStatus.LAB_TEST_COMPLETED);
+        /*
+            Method returns the list of the pending test requests that are not yet assigned to the Doctor but the
+            Lab test is completed
+         */
+        return testRequestQueryService.findBy(RequestStatus.LAB_TEST_COMPLETED); // returns all the test results that have lab test completed status
 
 
 
@@ -81,8 +85,11 @@ public class ConsultationController {
 
         // replace this line of code with your implementation
         // ajcs week3 code
-        User loggedInDoctor = userLoggedInService.getLoggedInUser();
-        return testRequestQueryService.findByDoctor(loggedInDoctor);
+        /*
+            Returns all the test requests that are assigned to the doctor
+         */
+        User loggedInDoctor = userLoggedInService.getLoggedInUser(); //gets the currently logged in Doctor
+        return testRequestQueryService.findByDoctor(loggedInDoctor); //returns all the test results that are assigned to the doctor
 
 
 
@@ -102,11 +109,15 @@ public class ConsultationController {
         //Create an object of TestRequest class and use the assignForConsultation() method of testRequestUpdateService to assign the particular id to the current user
         // return the above created object
         // For reference check the method assignForLabTest() method from LabRequestController class
+        /*
+            ajcs week3 assignment
+            This Method assigns the test request to the Doctor and returns the success status
+         */
         try {
             // replace this line of code with your implementation
             // ajcs week3 assignment
-            User loggedInDoctor = userLoggedInService.getLoggedInUser();
-            return   testRequestUpdateService.assignForConsultation(id,loggedInDoctor); // method assigns & returns the assigned id
+            User loggedInDoctor = userLoggedInService.getLoggedInUser(); //gets the currently logged in Doctor
+            return   testRequestUpdateService.assignForConsultation(id,loggedInDoctor);  //assigns the test request
 
         }catch (AppException e) {
             throw asBadRequest(e.getMessage());
@@ -126,11 +137,15 @@ public class ConsultationController {
         // Create an object of TestRequest class and make use of updateConsultation() method from testRequestUpdateService class
         //to update the current test request id with the testResult details by the current user(object created)
         // For reference check the method updateLabTest() method from LabRequestController class
+        /*
+            ajcs week 3 assignment
+            This Method stores the Consultation report from the Doctor the the DB
+         */
 
         try {
             //ajcs week3 assignment
-            User loggedInDoctor = userLoggedInService.getLoggedInUser();
-            return testRequestUpdateService.updateConsultation(id, testResult, loggedInDoctor);
+            User loggedInDoctor = userLoggedInService.getLoggedInUser(); //gets the currently logged in Doctor
+            return testRequestUpdateService.updateConsultation(id, testResult, loggedInDoctor);  // update the test result based on doctors comment
 
 
         } catch (ConstraintViolationException e) {

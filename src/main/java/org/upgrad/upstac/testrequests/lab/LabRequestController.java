@@ -72,8 +72,11 @@ public class LabRequestController {
         //Make use of the findByTester() method from testRequestQueryService class
         // For reference check the method getForTests() method from LabRequestController class
         // ajcs week3 code
+        /*
+            This method returns the list of all the requests that are assigned to the Laboratory Tester
+         */
         User loggedInTester = userLoggedInService.getLoggedInUser(); //getting currently logged in tester
-        return testRequestQueryService.findByTester(loggedInTester); // returns the list of history of requests attended by the tester
+        return testRequestQueryService.findByTester(loggedInTester);  // returns the list of assigned test request to the lab tester
 
 //        throw new ResponseStatusException(HttpStatus.NOT_IMPLEMENTED,"Not implemented"); // replace this line with your code
 
